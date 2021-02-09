@@ -60,3 +60,9 @@ RUN wget -O linuxgsm.sh https://linuxgsm.sh && chmod +x linuxgsm.sh && bash linu
 
 # Run installer in auto mode
 RUN ./vhserver auto-install
+
+# Final config
+#Ports
+EXPOSE 2456 8080 8081 8082
+# Entry
+ENTRYPOINT ["/home/valheim/start_server.sh"]
