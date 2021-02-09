@@ -6,8 +6,8 @@ LABEL build_version="0.1"
 
 # Environment variables
 
-ARG PUID=
-ARG PGID=
+ARG PUID=1000
+ARG PGID=1000
 ENV PUID=$PUID
 ENV PGID=$PGID
 
@@ -54,6 +54,8 @@ ENV LANG en_US.utf8
 
 # Workdir
 WORKDIR /home/valheim
+RUN chown -R valheim:valheim .
+RUN su valheim
 
 # download LGSM script & run
 RUN wget -O linuxgsm.sh https://linuxgsm.sh && chmod +x linuxgsm.sh && bash linuxgsm.sh vhserver
