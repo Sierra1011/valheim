@@ -27,7 +27,8 @@ The startup of the container will patch the server files if necessary.
     -e IS_PUBLIC=1 \
     -e WORLD_NAME="Midgard" \
     --restart=always \
-    sierra1011/valheim:latest```
+    sierra1011/valheim:latest
+```
 
 ## Docker-Compose
 ```version: '3'
@@ -51,4 +52,5 @@ services:
       - 2457:2457/udp
       - 2457:2458/udp
       - 2457:2458/udp
-    restart: unless-stopped```
+    restart: unless-stopped
+```
