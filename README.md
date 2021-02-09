@@ -13,7 +13,7 @@ The startup of the container will patch the server files if necessary.
 
 ## Docker Usage
 
-docker run -d --name valheim \
+```docker run -d --name valheim \
     -p 2456 \
     -p 2456/udp \
     -p 2457 \
@@ -27,10 +27,10 @@ docker run -d --name valheim \
     -e IS_PUBLIC=1 \
     -e WORLD_NAME="Midgard" \
     --restart=always \
-    sierra1011/valheim:latest
+    sierra1011/valheim:latest```
 
 ## Docker-Compose
-version: '3'
+```version: '3'
 
 services:
   valheim:
@@ -51,4 +51,4 @@ services:
       - 2457:2457/udp
       - 2457:2458/udp
       - 2457:2458/udp
-    restart: unless-stopped
+    restart: unless-stopped```
