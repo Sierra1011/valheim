@@ -32,7 +32,9 @@ docker run -d --name valheim \
 ```
 
 ## Docker-Compose
-```version: '3'
+
+```
+version: '3'
 
 services:
   valheim:
