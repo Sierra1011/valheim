@@ -13,7 +13,7 @@ The startup of the container will patch the server files if necessary.
 
 ## Docker Usage
 
-```
+```shell
 docker run -d --name valheim \
     -p 2456 \
     -p 2456/udp \
@@ -33,7 +33,7 @@ docker run -d --name valheim \
 
 ## Docker-Compose
 
-```
+```shell
 version: '3'
 
 services:
