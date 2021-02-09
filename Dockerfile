@@ -1,70 +1,27 @@
 FROM steamcmd/steamcmd:latest
 
-# Maintainer label
-LABEL Maintainer="Sierra1011"
-LABEL build_version="0.1"
+ARG SERVER_DIR=/server
+ARG WORLDS_DIR=/root/.config/unity3d/IronGate/Valheim/worlds/
 
-# Environment variables
+RUN mkdir -p $SERVER_DIRECTORY
+RUN mkdir -p $WORLDS_DIRECTORY
 
-ARG PUID=1000
-ARG PGID=1000
-ENV PUID=$PUID
-ENV PGID=$PGID
+ENV	SERVER_DIRECTORY=$SERVER_DIRECTORY \
+    WORLDS_DIRECTORY=$WORLDS_DIRECTORY \
+    SERVER_NAME="My Valheim Server" \
+    SERVER_PASSWORD="Vikings" \
+    IS_PUBLIC="1" \
+    WORLD_NAME="Midgard"
 
-# LGSM specific env
-ENV TERM=xterm
+WORKDIR $SERVER_DIRECTORY
 
-# Dependencies
-RUN dpkg --add-architecture i386 && \
-    apt update -y && \
-    apt install -y --no-install-recommends \
-        curl \
-        wget \
-        file \
-        tar \
-        bzip2 \
-        gzip \
-        unzip \
-        bsdmainutils \
-        python \
-        util-linux \
-        ca-certificates \
-        binutils \
-        bc \
-        jq \
-        tmux \
-        netcat \
-        lib32gcc1 \
-        lib32stdc++6 \
-        steamcmd
+COPY entrypoint.sh /entrypoint.sh
 
-RUN apt clean && \
-    rm -rf \
-	/tmp/* \
-	/var/lib/apt/lists/* \
-	/var/tmp/*
+EXPOSE 2456/tcp
+EXPOSE 2456/udp
+EXPOSE 2457/tcp
+EXPOSE 2457/udp
+EXPOSE 2458/tcp
+EXPOSE 2458/udp
 
-# Locale, Timezone and user
-RUN localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 && \
-    ln -snf /usr/share/zoneinfo/$TimeZone /etc/localtime && echo $TimeZone > /etc/timezone && \
-    adduser --disabled-password --shell /bin/bash --disabled-login --gecos "" valheim
-ENV LANG en_US.utf8
-
-##### Base Image
-
-# Workdir
-WORKDIR /home/valheim
-RUN chown -R valheim:valheim .
-RUN su valheim
-
-# download LGSM script & run
-RUN wget -O linuxgsm.sh https://linuxgsm.sh && chmod +x linuxgsm.sh && bash linuxgsm.sh vhserver
-
-# Run installer in auto mode
-RUN ./vhserver auto-install
-
-# Final config
-#Ports
-EXPOSE 2456 8080 8081 8082
-# Entry
-ENTRYPOINT ["/home/valheim/start_server.sh"]
+ENTRYPOINT ["bash", "/entrypoint.sh"]
