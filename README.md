@@ -53,7 +53,7 @@ services:
       - 2456:2456/udp
       - 2457:2457/tcp
       - 2457:2457/udp
-      - 2457:2458/tcp
-      - 2457:2458/udp
+      - 2458:2458/tcp
+      - 2458:2458/udp
     restart: unless-stopped
 ```
