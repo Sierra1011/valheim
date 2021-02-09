@@ -5,11 +5,14 @@
 
 ![Cover](https://raw.githubusercontent.com/sierra1011/valheim/main/valheim.png)
 
+
 ## Description
 A simple, easy server to get you up and fighting quickly.
 
 Based on SteamCMD, to install the server, just start it. To update it, restart it.
 The startup of the container will patch the server files if necessary.
+
+
 
 ## Docker Usage
 
@@ -30,6 +33,7 @@ docker run -d --name valheim \
     --restart=always \
     sierra1011/valheim:latest
 ```
+
 
 ## Docker-Compose
 
