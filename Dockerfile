@@ -1,7 +1,7 @@
 FROM steamcmd/steamcmd:latest
 
-ARG SERVER_DIR=/server
-ARG WORLDS_DIR=/root/.config/unity3d/IronGate/Valheim/worlds/
+ARG SERVER_DIRECTORY=/server
+ARG WORLDS_DIRECTORY=/root/.config/unity3d/IronGate/Valheim/worlds/
 
 RUN mkdir -p $SERVER_DIRECTORY
 RUN mkdir -p $WORLDS_DIRECTORY
