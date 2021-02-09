@@ -59,4 +59,4 @@ WORKDIR /home/valheim
 RUN wget -O linuxgsm.sh https://linuxgsm.sh && chmod +x linuxgsm.sh && bash linuxgsm.sh vhserver
 
 # Run installer in auto mode
-./vhserver auto-install
+RUN ./vhserver auto-install
